@@ -120,8 +120,15 @@
         box-shadow: 0 16px 35px rgba(229, 9, 20, 0.22);
       }
 
-      .card h3 { margin: 0 0 0.5rem; color: #ffdfe2; }
-      .card p { margin: 0; color: #c6c6d2; }
+      .card h3 {
+        margin: 0 0 0.5rem;
+        color: #ffdfe2;
+      }
+
+      .card p {
+        margin: 0;
+        color: #c6c6d2;
+      }
 
       .contact {
         margin-top: 2rem;
@@ -136,6 +143,22 @@
       @keyframes float {
         0%, 100% { transform: rotateX(0deg) translateY(0px); }
         50% { transform: rotateX(2deg) translateY(-5px); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero {
+          animation: none;
+          transform: none !important;
+        }
+
+        .card {
+          transition: none;
+        }
+
+        .card:hover {
+          transform: none;
+          box-shadow: none;
+        }
       }
     </style>
   </head>
@@ -179,22 +202,60 @@
 
       <section class="contact">
         <p><strong>Email:</strong> <a href="mailto:hitechacademyba@gmail.com">hitechacademyba@gmail.com</a></p>
-        <p><strong>Phone:</strong> 7722831001, 9300340009</p>
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+917722831001">7722831001</a>,
+          <a href="tel:+919300340009">9300340009</a>
+        </p>
         <p><strong>Location:</strong> BAIKUNTHDHAM, KAKARAHA, TEONTHAR, REWA (M.P.)</p>
       </section>
     </main>
 
     <script>
       const hero = document.getElementById('hero3d');
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
-        hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+      let heroRect = hero.getBoundingClientRect();
+      let frameId = null;
+      let nextTransform = 'rotateY(0deg) rotateX(0deg)';
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const applyTransform = () => {
+        hero.style.transform = nextTransform;
+        frameId = null;
+      };
+
+      const queueTransform = () => {
+        if (frameId !== null) return;
+        frameId = requestAnimationFrame(applyTransform);
+      };
+
+      const refreshRect = () => {
+        heroRect = hero.getBoundingClientRect();
+      };
+
+      window.addEventListener('resize', refreshRect);
+      window.addEventListener('scroll', refreshRect, { passive: true });
+
+      hero.addEventListener('mouseenter', () => {
+        refreshRect();
       });
-      hero.addEventListener('mouseleave', () => {
-        hero.style.transform = 'rotateY(0deg) rotateX(0deg)';
-      });
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(refreshRect).observe(document.body);
+      }
+
+      if (!prefersReducedMotion) {
+        hero.addEventListener('mousemove', (e) => {
+          const x = ((e.clientX - heroRect.left) / heroRect.width - 0.5) * 14;
+          const y = ((e.clientY - heroRect.top) / heroRect.height - 0.5) * -14;
+          nextTransform = `rotateY(${x}deg) rotateX(${y}deg)`;
+          queueTransform();
+        });
+
+        hero.addEventListener('mouseleave', () => {
+          nextTransform = 'rotateY(0deg) rotateX(0deg)';
+          queueTransform();
+        });
+      }
     </script>
   </body>
 </html>
