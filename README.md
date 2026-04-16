@@ -4,4 +4,4 @@ A 3D retro + Netflix-inspired themed school website.
 
 ## Run
 
-Open `/home/runner/work/tester/tester/index.html` in a browser.
+Open `index.html` in a browser.
