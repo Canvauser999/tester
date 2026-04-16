@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>High Tech Academy High School</title>
+    <style>
+      :root {
+        --bg: #08060f;
+        --card: #141025;
+        --text: #f5f5f7;
+        --red: #e50914;
+        --neon: #29d3ff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(41, 211, 255, 0.2), transparent 35%),
+          radial-gradient(circle at 90% 20%, rgba(229, 9, 20, 0.2), transparent 40%),
+          linear-gradient(160deg, #06050d 0%, #120f22 50%, #07060f 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+        transform: perspective(500px) rotateX(70deg) scale(1.2);
+        transform-origin: center top;
+        opacity: 0.25;
+      }
+
+      .container {
+        width: min(1100px, 92vw);
+        margin: 0 auto;
+        padding: 2rem 0 4rem;
+      }
+
+      .brand {
+        display: inline-block;
+        margin: 1rem 0 2rem;
+        padding: 0.45rem 0.9rem;
+        border: 1px solid rgba(229, 9, 20, 0.5);
+        border-radius: 999px;
+        letter-spacing: 0.15rem;
+        font-weight: 700;
+        color: var(--red);
+        text-transform: uppercase;
+        background: rgba(229, 9, 20, 0.08);
+        box-shadow: 0 0 16px rgba(229, 9, 20, 0.25);
+      }
+
+      .hero {
+        perspective: 1200px;
+        transform-style: preserve-3d;
+        padding: 2rem;
+        border-radius: 24px;
+        background: linear-gradient(145deg, rgba(20, 16, 37, 0.9), rgba(8, 6, 15, 0.85));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+        animation: float 5s ease-in-out infinite;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3.3rem);
+        line-height: 1.1;
+        text-shadow: 0 0 12px rgba(41, 211, 255, 0.35);
+      }
+
+      .subtitle {
+        margin: 1rem 0;
+        color: #d6d6de;
+        font-size: 1.05rem;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .pill {
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(41, 211, 255, 0.35);
+        background: rgba(41, 211, 255, 0.08);
+        font-size: 0.9rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: linear-gradient(160deg, rgba(20, 16, 37, 0.95), rgba(10, 8, 18, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 1.1rem;
+        transform-style: preserve-3d;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px) rotateX(10deg) rotateY(-8deg);
+        box-shadow: 0 16px 35px rgba(229, 9, 20, 0.22);
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        color: #ffdfe2;
+      }
+
+      .card p {
+        margin: 0;
+        color: #c6c6d2;
+      }
+
+      .contact {
+        margin-top: 2rem;
+        padding: 1rem 1.2rem;
+        border-left: 4px solid var(--red);
+        background: rgba(229, 9, 20, 0.08);
+        border-radius: 12px;
+      }
+
+      a { color: #8fe8ff; }
+
+      @keyframes float {
+        0%, 100% { transform: rotateX(0deg) translateY(0px); }
+        50% { transform: rotateX(2deg) translateY(-5px); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero {
+          animation: none;
+          transform: none !important;
+        }
+
+        .card {
+          transition: none;
+        }
+
+        .card:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <span class="brand">RetroFlix Schoolverse</span>
+
+      <section class="hero" id="hero3d">
+        <h1>High Tech Academy High School</h1>
+        <p class="subtitle">
+          Best English medium school in BAIKUNTHDHAM, KAKARAHA, TEONTHAR, REWA (M.P.)
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Classes: NUR to 10th</span>
+          <span class="pill">Computer Lab</span>
+          <span class="pill">Sports Ground</span>
+          <span class="pill">Modern Classrooms</span>
+          <span class="pill">Transportation Available</span>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Premium Features">
+        <article class="card">
+          <h3>Computer Lab</h3>
+          <p>Hands-on digital learning with smart guidance and modern systems.</p>
+        </article>
+        <article class="card">
+          <h3>Sports Ground</h3>
+          <p>Active, healthy and energetic development through sports excellence.</p>
+        </article>
+        <article class="card">
+          <h3>Modern Classroom</h3>
+          <p>Comfortable and engaging spaces designed for focused learning.</p>
+        </article>
+        <article class="card">
+          <h3>Transportation</h3>
+          <p>Safe and reliable school transport for convenient daily commute.</p>
+        </article>
+      </section>
+
+      <section class="contact">
+        <p><strong>Email:</strong> <a href="mailto:hitechacademyba@gmail.com">hitechacademyba@gmail.com</a></p>
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+917722831001">7722831001</a>,
+          <a href="tel:+919300340009">9300340009</a>
+        </p>
+        <p><strong>Location:</strong> BAIKUNTHDHAM, KAKARAHA, TEONTHAR, REWA (M.P.)</p>
+      </section>
+    </main>
+
+    <script>
+      const hero = document.getElementById('hero3d');
+      let heroRect = hero.getBoundingClientRect();
+      let frameId = null;
+      let nextTransform = 'rotateY(0deg) rotateX(0deg)';
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const applyTransform = () => {
+        hero.style.transform = nextTransform;
+        frameId = null;
+      };
+
+      const queueTransform = () => {
+        if (frameId !== null) return;
+        frameId = requestAnimationFrame(applyTransform);
+      };
+
+      const refreshRect = () => {
+        heroRect = hero.getBoundingClientRect();
+      };
+
+      window.addEventListener('resize', refreshRect);
+      window.addEventListener('scroll', refreshRect, { passive: true });
+
+      hero.addEventListener('mouseenter', () => {
+        refreshRect();
+      });
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(refreshRect).observe(document.body);
+      }
+
+      if (!prefersReducedMotion) {
+        hero.addEventListener('mousemove', (e) => {
+          const x = ((e.clientX - heroRect.left) / heroRect.width - 0.5) * 14;
+          const y = ((e.clientY - heroRect.top) / heroRect.height - 0.5) * -14;
+          nextTransform = `rotateY(${x}deg) rotateX(${y}deg)`;
+          queueTransform();
+        });
+
+        hero.addEventListener('mouseleave', () => {
+          nextTransform = 'rotateY(0deg) rotateX(0deg)';
+          queueTransform();
+        });
+      }
+    </script>
+  </body>
+</html>
